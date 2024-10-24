@@ -38,7 +38,7 @@ if selected == "Gantt Chart":
             df = pd.concat([df, new_task], ignore_index=True)
             
             # Save the updated tasks
-            function.save_tasks(df)
+            function.save_data(df)
             st.success("Task added and saved!")
 
     # Plot the Gantt chart
