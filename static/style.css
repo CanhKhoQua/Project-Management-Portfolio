@@ -1,0 +1,38 @@
+*{box-sizing: border-box;}
+*{display: block;}
+
+body {
+background-color: #B9B9B9;
+}
+a:hover{
+    cursor: pointer;
+}
+
+.title-header {
+    background-color: #80DDFF;
+    text-align: center;
+    border: solid 3px;
+    border-color: black;
+    padding: 20px;
+
+}
+
+.nav-pages {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+
+}
+
+.nav-pages a {
+    text-decoration: none;
+    background-color: #62D9F3;
+    color: black;
+    font-weight: bold;
+    border: solid 2px;
+    border-color: #5E9EFF;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 5px;
+
+}
