@@ -22,7 +22,7 @@ st.markdown(
     """
     <style>
     * { box-sizing: border-box; }
-    body { background-color: #B9B9B9; }
+        body { background-color: #B9B9B9; }
     
     .title-header {
         background-color: #80DDFF;
