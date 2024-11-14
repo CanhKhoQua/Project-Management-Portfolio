@@ -1,9 +1,16 @@
 import streamlit as st
 import base64
 
+@st.cache_data
 def get_image_as_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
+
+@st.cache_data
+def precompute_base64_images(team_members):
+    for member in team_members:
+        member['image_base64'] = get_image_as_base64(member['image'])
+    return team_members
 
 def display_statement_of_work():
     st.title("Statement of Work (SOW)")
@@ -42,6 +49,9 @@ def display_statement_of_work():
          "image": "templates/images/sample.jpg"},
     ]
 
+    # Precompute Base64 Encodings for Images
+    team_members = precompute_base64_images(team_members)
+
     # Apply custom CSS to create a flex layout for team members
     st.markdown("""
         <style>
@@ -75,10 +85,9 @@ def display_statement_of_work():
         with col1:
             if i < len(team_members):
                 member = team_members[i]
-                image_base64 = get_image_as_base64(member['image'])
                 st.markdown(f"""
                     <div class="team-member">
-                        <img src="data:image/jpeg;base64,{image_base64}" alt="{member['name']}" style="width:100px;height:100px;border-radius:50%;">
+                        <img src="data:image/jpeg;base64,{member['image_base64']}" alt="{member['name']}" style="width:180px;height:180px;border-radius:50%;">
                         <h2>{member['name']}</h2>
                         <h4>{member['role']}</h4>
                         <p>{member['responsibility']}</p>
@@ -88,10 +97,9 @@ def display_statement_of_work():
         with col2:
             if i + 1 < len(team_members):
                 member = team_members[i + 1]
-                image_base64 = get_image_as_base64(member['image'])
                 st.markdown(f"""
                     <div class="team-member">
-                        <img src="data:image/jpeg;base64,{image_base64}" alt="{member['name']}" style="width:100px;height:100px;border-radius:50%;">
+                        <img src="data:image/jpeg;base64,{member['image_base64']}" alt="{member['name']}" style="width:180px;height:180px;border-radius:50%;">
                         <h2>{member['name']}</h2>
                         <h4>{member['role']}</h4>
                         <p>{member['responsibility']}</p>

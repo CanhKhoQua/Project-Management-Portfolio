@@ -53,21 +53,44 @@ with st.sidebar:
         options=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "SOW"],
         icons=["house", "bar-chart-steps", "list-ul", "diagram-3", "person-workspace"],
         default_index=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "SOW"].index(st.session_state["selected_page"]),
+        key="selected"
     )
-    # Update session state with selected page
+
+# Update the selected page in session state
+if st.session_state["selected_page"] != selected:
     st.session_state["selected_page"] = selected
 
 # Display header
 st.markdown('<h1 class="title-header">Group 5 Project Management Portfolio</h1>', unsafe_allow_html=True)
 
+# Cache the content of the pages to speed up navigation
+@st.cache_data
+def get_home_page_content():
+    return "Welcome to the Home Page!"
+
+def load_gantt_chart():
+    ganttchart.display_gantt_chart()
+
+@st.cache_data
+def get_work_breakdown_structure_content():
+    return "Work Breakdown Structure"
+
+@st.cache_data
+def get_mindmap_content():
+    return "Mindmap"
+
+@st.cache_data
+def load_sow():
+    sow.display_statement_of_work()
+
 # Content display based on selected page
 if st.session_state["selected_page"] == "Home":
-    st.write("Welcome to the Home Page!")
+    st.write(get_home_page_content())
 elif st.session_state["selected_page"] == "Gantt Chart":
-    ganttchart.display_gantt_chart()
+    load_gantt_chart()
 elif st.session_state["selected_page"] == "Work Breakdown Structure":
-    st.title("Work Breakdown Structure")
+    st.write(get_work_breakdown_structure_content())
 elif st.session_state["selected_page"] == "Mindmap":
-    st.title("Mindmap")
+    st.write(get_mindmap_content())
 elif st.session_state["selected_page"] == "SOW":
-    sow.display_statement_of_work()
+    load_sow()
