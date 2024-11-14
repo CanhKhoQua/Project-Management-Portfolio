@@ -1,6 +1,10 @@
 import streamlit as st
 import base64
 
+def get_image_as_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()
+
 def display_statement_of_work():
     st.title("Statement of Work (SOW)")
 
@@ -12,7 +16,8 @@ def display_statement_of_work():
         {"name": "Rajeev Kunaparaju", "role": "Project Manager", 
          "responsibility": "Focused on helping the team stay on track and communicating with everyone about their current tasks.",
          "image": "templates/images/sample.jpg"},
-        {"name": "David Rome", "role": "Developer", "responsibility": "Responsible for the styling and layout of the page.",
+        {"name": "David Rome", "role": "Developer", 
+         "responsibility": "Responsible for the styling and layout of the page.",
          "image": "templates/images/david_image.png"},
         {"name": "Loc Nguyen", "role": "Developer", 
          "responsibility": "Responsible for setting up the web page, including displaying the materials using Streamlit.",
@@ -26,9 +31,11 @@ def display_statement_of_work():
         {"name": "Noah Ashcraft", "role": "Researcher", 
          "responsibility": "Working on researching topics and tasks related to the project when needed, and communicating with other members to see what assistance can be provided for them.",
          "image": "templates/images/noah_image.jpg"},
-        {"name": "Sam Anderson", "role": "Role Pending", "responsibility": "To be assigned.",
+        {"name": "Sam Anderson", "role": "Role Pending", 
+         "responsibility": "To be assigned.",
          "image": "templates/images/sample.jpg"},
-        {"name": "Trey Burling", "role": "Role Pending", "responsibility": "To be assigned.",
+        {"name": "Trey Burling", "role": "Role Pending", 
+         "responsibility": "To be assigned.",
          "image": "templates/images/sample.jpg"},
         {"name": "Elijah Garman", "role": "Prototype Contributor", 
          "responsibility": "Contributed to prototyping using Figma.",
@@ -63,14 +70,15 @@ def display_statement_of_work():
 
     # Render the team members in a flexible layout
     st.markdown('<div class="team-container">', unsafe_allow_html=True)
-    for i in range(0, len(team_members), 3):
-        col1, col2, col3 = st.columns(3)
+    for i in range(0, len(team_members), 2):
+        col1, col2 = st.columns(2)
         with col1:
             if i < len(team_members):
                 member = team_members[i]
+                image_base64 = get_image_as_base64(member['image'])
                 st.markdown(f"""
                     <div class="team-member">
-                        <img src="data:image/jpeg;base64,{base64.b64encode(open(member['image'], 'rb').read()).decode()}" alt="{member['name']}">
+                        <img src="data:image/jpeg;base64,{image_base64}" alt="{member['name']}" style="width:100px;height:100px;border-radius:50%;">
                         <h2>{member['name']}</h2>
                         <h4>{member['role']}</h4>
                         <p>{member['responsibility']}</p>
@@ -80,25 +88,14 @@ def display_statement_of_work():
         with col2:
             if i + 1 < len(team_members):
                 member = team_members[i + 1]
+                image_base64 = get_image_as_base64(member['image'])
                 st.markdown(f"""
                     <div class="team-member">
-                        <img src="data:image/jpeg;base64,{base64.b64encode(open(member['image'], 'rb').read()).decode()}" alt="{member['name']}">
+                        <img src="data:image/jpeg;base64,{image_base64}" alt="{member['name']}" style="width:100px;height:100px;border-radius:50%;">
                         <h2>{member['name']}</h2>
                         <h4>{member['role']}</h4>
                         <p>{member['responsibility']}</p>
                     </div>
                 """, unsafe_allow_html=True)
-
-        with col3:
-            if i + 2 < len(team_members):
-                member = team_members[i + 2]
-                st.markdown(f"""
-                    <div class="team-member">
-                        <img src="data:image/jpeg;base64,{base64.b64encode(open(member['image'], 'rb').read()).decode()}" alt="{member['name']}">
-                        <h2>{member['name']}</h2>
-                        <h4>{member['role']}</h4>
-                        <p>{member['responsibility']}</p>
-                    </div>
-                """, unsafe_allow_html=True)
-
     st.markdown('</div>', unsafe_allow_html=True)
+
