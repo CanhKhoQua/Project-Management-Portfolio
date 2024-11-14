@@ -21,7 +21,7 @@ def display_statement_of_work():
          "responsibility": "Website Mock-ups and aid in development. Project charter development.",
          "image": "templates/images/sample.jpg"},
         {"name": "Conner King", "role": "Researcher", 
-         "responsibility": "Researched whether to use Streamlit, Flask, or both, and created a cost estimation table. Drafted a critical path analysis. Also developed a Risk Management Plan, identifying key risks and mitigation strategies to ensure successful delivery.",
+         "responsibility": "Researched whether to use Streamlit, Flask, or both. Then created a cost estimation table. Along with a draft of a critical path analysis and developed a Risk Management Plan.",
          "image": "templates/images/conner_image.jpg"},
         {"name": "Noah Ashcraft", "role": "Researcher", 
          "responsibility": "Working on researching topics and tasks related to the project when needed, and communicating with other members to see what assistance can be provided for them.",
