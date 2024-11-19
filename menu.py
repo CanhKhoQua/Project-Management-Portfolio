@@ -49,9 +49,9 @@ if "selected_page" not in st.session_state:
 with st.sidebar:
     selected = option_menu(
         menu_title="Menu",
-        options=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "Statement of Work"],
-        icons=["house", "bar-chart-steps", "list-ul", "diagram-3", "person-workspace"],
-        default_index=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "Statement of Work"].index(st.session_state["selected_page"]),
+        options=["Home", "Project Charter", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "Statement of Work"],
+        icons=["house", "clipboard-data", "bar-chart-steps", "list-ul", "diagram-3", "person-workspace"],
+        default_index=["Home", "Project Charter", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "Statement of Work"].index(st.session_state["selected_page"]),
         key="selected"
     )
 
@@ -71,6 +71,8 @@ def run_script(script_path):
 # Content display based on selected page
 if st.session_state["selected_page"] == "Home":
     run_script("templates/home_page.py")
+elif st.session_state["selected_page"] == "Project Charter":
+    run_script("templates/project_charter.py")
 elif st.session_state["selected_page"] == "Gantt Chart":
     run_script("templates/gantt_chart.py")
 elif st.session_state["selected_page"] == "Work Breakdown Structure":
