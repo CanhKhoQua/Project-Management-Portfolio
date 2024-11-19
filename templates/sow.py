@@ -1,12 +1,10 @@
 import streamlit as st
 import base64
 
-@st.cache_data
 def get_image_as_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
 
-@st.cache_data
 def precompute_base64_images(team_members):
     for member in team_members:
         member['image_base64'] = get_image_as_base64(member['image'])
@@ -22,7 +20,7 @@ def display_statement_of_work():
     team_members = [
         {"name": "Rajeev Kunaparaju", "role": "Project Manager", 
          "responsibility": "Focused on helping the team stay on track and communicating with everyone about their current tasks.",
-         "image": "templates/images/sample.jpg"},
+         "image": "templates/images/rajeev_image.jpg"},
         {"name": "David Rome", "role": "Developer", 
          "responsibility": "Responsible for the styling and layout of the page.",
          "image": "templates/images/david_image.png"},
@@ -31,7 +29,7 @@ def display_statement_of_work():
          "image": "templates/images/loc_image.jpeg"},
         {"name": "Tanner Kern", "role": "Designer", 
          "responsibility": "Website Mock-ups and aid in development. Project charter development.",
-         "image": "templates/images/sample.jpg"},
+         "image": "templates/images/tanner_image.jpg"},
         {"name": "Conner King", "role": "Researcher", 
          "responsibility": "Researched whether to use Streamlit, Flask, or both. Then created a cost estimation table. Along with a draft of a critical path analysis and developed a Risk Management Plan.",
          "image": "templates/images/conner_image.jpg"},
@@ -40,13 +38,13 @@ def display_statement_of_work():
          "image": "templates/images/noah_image.jpg"},
         {"name": "Sam Anderson", "role": "Role Pending", 
          "responsibility": "To be assigned.",
-         "image": "templates/images/sample.jpg"},
+         "image": "templates/images/sam_image.jpg"},
         {"name": "Trey Burling", "role": "Role Pending", 
          "responsibility": "To be assigned.",
          "image": "templates/images/sample.jpg"},
         {"name": "Elijah Garman", "role": "Prototype Contributor", 
          "responsibility": "Contributed to prototyping using Figma.",
-         "image": "templates/images/sample.jpg"},
+         "image": "templates/images/elijah_image.jpg"},
     ]
 
     # Precompute Base64 Encodings for Images

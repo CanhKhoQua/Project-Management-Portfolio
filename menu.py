@@ -63,23 +63,19 @@ if st.session_state["selected_page"] != selected:
 # Display header
 st.markdown('<h1 class="title-header">Group 5 Project Management Portfolio</h1>', unsafe_allow_html=True)
 
-# Cache the content of the pages to speed up navigation
-@st.cache_data
 def get_home_page_content():
     return "Welcome to the Home Page!"
 
 def load_gantt_chart():
     ganttchart.display_gantt_chart()
 
-@st.cache_data
 def get_work_breakdown_structure_content():
-    return "Work Breakdown Structure"
+    # Display the WBS Image
+    st.image("templates/images/Project WBS.png", caption="Work Breakdown Structure", use_column_width=True)
 
-@st.cache_data
 def get_mindmap_content():
     return "Mindmap"
 
-@st.cache_data
 def load_sow():
     sow.display_statement_of_work()
 
