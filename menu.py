@@ -1,10 +1,5 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from templates import ganttchart, sow  # Import display functions for specific pages
-
-# Initialize session state for page selection if it doesn't exist
-if "selected_page" not in st.session_state:
-    st.session_state["selected_page"] = "Home"
 
 # Apply CSS styling to the sidebar and the main header
 st.markdown(
@@ -46,13 +41,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Initialize session state for page selection if it doesn't exist
+if "selected_page" not in st.session_state:
+    st.session_state["selected_page"] = "Home"
+
 # Sidebar navigation menu
 with st.sidebar:
     selected = option_menu(
         menu_title="Menu",
-        options=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "SOW"],
+        options=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "Statement of Work"],
         icons=["house", "bar-chart-steps", "list-ul", "diagram-3", "person-workspace"],
-        default_index=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "SOW"].index(st.session_state["selected_page"]),
+        default_index=["Home", "Gantt Chart", "Work Breakdown Structure", "Mindmap", "Statement of Work"].index(st.session_state["selected_page"]),
         key="selected"
     )
 
@@ -63,30 +62,20 @@ if st.session_state["selected_page"] != selected:
 # Display header
 st.markdown('<h1 class="title-header">Group 5 Project Management Portfolio</h1>', unsafe_allow_html=True)
 
-def get_home_page_content():
-    return "Welcome to the Home Page!"
-
-def load_gantt_chart():
-    ganttchart.display_gantt_chart()
-
-def get_work_breakdown_structure_content():
-    # Display the WBS Image
-    st.image("templates/images/Project WBS.png", caption="Work Breakdown Structure", use_column_width=True)
-
-def get_mindmap_content():
-    return "Mindmap"
-
-def load_sow():
-    sow.display_statement_of_work()
+# Function to run the code in a given file
+def run_script(script_path):
+    with open(script_path, "r") as file:
+        script_code = file.read()
+        exec(script_code, globals())
 
 # Content display based on selected page
 if st.session_state["selected_page"] == "Home":
-    st.write(get_home_page_content())
+    run_script("templates/home_page.py")
 elif st.session_state["selected_page"] == "Gantt Chart":
-    load_gantt_chart()
+    run_script("templates/gantt_chart.py")
 elif st.session_state["selected_page"] == "Work Breakdown Structure":
-    st.write(get_work_breakdown_structure_content())
+    run_script("templates/wbs.py")
 elif st.session_state["selected_page"] == "Mindmap":
-    st.write(get_mindmap_content())
-elif st.session_state["selected_page"] == "SOW":
-    load_sow()
+    run_script("templates/mindmap.py")
+elif st.session_state["selected_page"] == "Statement of Work":
+    run_script("templates/sow.py")

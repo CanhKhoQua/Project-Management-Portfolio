@@ -1,14 +1,4 @@
 import streamlit as st
-import base64
-
-def get_image_as_base64(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode()
-
-def precompute_base64_images(team_members):
-    for member in team_members:
-        member['image_base64'] = get_image_as_base64(member['image'])
-    return team_members
 
 def display_statement_of_work():
     st.title("Statement of Work (SOW)")
@@ -16,92 +6,48 @@ def display_statement_of_work():
     # Team Roles and Responsibilities Section
     st.header("Team Roles and Responsibilities")
 
-    # Team members data
+    # Team members data (excluding the first "hero" member)
     team_members = [
         {"name": "Rajeev Kunaparaju", "role": "Project Manager", 
          "responsibility": "Focused on helping the team stay on track and communicating with everyone about their current tasks.",
-         "image": "templates/images/rajeev_image.jpg"},
+         "image": "static/images/rajeev_image.png"},
         {"name": "David Rome", "role": "Developer", 
          "responsibility": "Responsible for the styling and layout of the page.",
-         "image": "templates/images/david_image.png"},
+         "image": "static/images/david_image.png"},
         {"name": "Loc Nguyen", "role": "Developer", 
          "responsibility": "Responsible for setting up the web page, including displaying the materials using Streamlit.",
-         "image": "templates/images/loc_image.jpeg"},
+         "image": "static/images/loc_image.png"},
         {"name": "Tanner Kern", "role": "Designer", 
          "responsibility": "Website Mock-ups and aid in development. Project charter development.",
-         "image": "templates/images/tanner_image.jpg"},
+         "image": "static/images/tanner_image.png"},
         {"name": "Conner King", "role": "Researcher", 
          "responsibility": "Researched whether to use Streamlit, Flask, or both. Then created a cost estimation table. Along with a draft of a critical path analysis and developed a Risk Management Plan.",
-         "image": "templates/images/conner_image.jpg"},
+         "image": "static/images/conner_image.png"},
         {"name": "Noah Ashcraft", "role": "Researcher", 
          "responsibility": "Working on researching topics and tasks related to the project when needed, and communicating with other members to see what assistance can be provided for them.",
-         "image": "templates/images/noah_image.jpg"},
+         "image": "static/images/noah_image.png"},
         {"name": "Sam Anderson", "role": "Role Pending", 
          "responsibility": "To be assigned.",
-         "image": "templates/images/sam_image.jpg"},
+         "image": "static/images/sam_image.png"},
         {"name": "Trey Burling", "role": "Role Pending", 
          "responsibility": "To be assigned.",
-         "image": "templates/images/sample.jpg"},
+         "image": "static/images/sample.jpg"},
         {"name": "Elijah Garman", "role": "Prototype Contributor", 
          "responsibility": "Contributed to prototyping using Figma.",
-         "image": "templates/images/elijah_image.jpg"},
+         "image": "static/images/elijah_image.png"},
     ]
 
-    # Precompute Base64 Encodings for Images
-    team_members = precompute_base64_images(team_members)
-
-    # Apply custom CSS to create a flex layout for team members
-    st.markdown("""
-        <style>
-            .team-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
-                width: 80%;
-                margin: 0 auto;
-            }
-            .team-member {
-                text-align: center;
-                padding: 20px;
-                flex: 1;
-                min-width: 250px; /* Ensure minimum width for each member */
-            }
-            .team-member img {
-                border-radius: 50%;
-                width: 180px;
-                height: 180px;
-                object-fit: cover;
-                margin-bottom: 10px;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
-    # Render the team members in a flexible layout
-    st.markdown('<div class="team-container">', unsafe_allow_html=True)
-    for i in range(0, len(team_members), 2):
-        col1, col2 = st.columns(2)
+    # Display the remaining team members in the same "hero" style
+    for member in team_members:
+        col1, col2 = st.columns(2, gap="small", vertical_alignment="center")
         with col1:
-            if i < len(team_members):
-                member = team_members[i]
-                st.markdown(f"""
-                    <div class="team-member">
-                        <img src="data:image/jpeg;base64,{member['image_base64']}" alt="{member['name']}" style="width:180px;height:180px;border-radius:50%;">
-                        <h2>{member['name']}</h2>
-                        <h4>{member['role']}</h4>
-                        <p>{member['responsibility']}</p>
-                    </div>
-                """, unsafe_allow_html=True)
+            st.image(member['image'], width=230)
 
         with col2:
-            if i + 1 < len(team_members):
-                member = team_members[i + 1]
-                st.markdown(f"""
-                    <div class="team-member">
-                        <img src="data:image/jpeg;base64,{member['image_base64']}" alt="{member['name']}" style="width:180px;height:180px;border-radius:50%;">
-                        <h2>{member['name']}</h2>
-                        <h4>{member['role']}</h4>
-                        <p>{member['responsibility']}</p>
-                    </div>
-                """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+            st.title(member['name'], anchor=False)
+            st.write(f"**{member['role']}**")
+            st.write(f"{member['responsibility']}")
 
+# Main entry point
+if __name__ == "__main__":
+    display_statement_of_work()

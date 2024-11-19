@@ -119,3 +119,6 @@ def display_gantt_chart():
         # Display the chart
         st.plotly_chart(fig)
 
+# Main entry point
+if __name__ == "__main__":
+    display_gantt_chart()
