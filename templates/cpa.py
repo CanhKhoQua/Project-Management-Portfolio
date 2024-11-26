@@ -2,7 +2,7 @@ import streamlit as st
 
 def display_cpa():
     # Display the image
-    st.image("static\\images\\Critical Path Analysis.png", caption="AOA Diagram", use_column_width=True)
+    st.image("static/images/Critical Path Analysis.png", caption="AOA Diagram", use_column_width=True)
     
     # Add a title and explanation of the critical path
     st.title("Critical Path Analysis")
