@@ -24,7 +24,7 @@ def load_data():
         return df
     except FileNotFoundError:
         # Return an empty DataFrame if the file doesn't exist
-        return pd.DataFrame(columns=["Task", "Start", "Finish", "Resource"])
+        return pd.DataFrame(columns=["Task", "Start", "Finish", "Dependencies"])
 
 def display_gantt_chart():
     """Displays the Gantt chart and allows task addition."""
@@ -39,13 +39,13 @@ def display_gantt_chart():
         task_name = st.text_input("Task")
         task_start = st.date_input("Start Date")
         task_finish = st.date_input("Finish Date")
-        task_resource = st.text_input("Resource")
+        task_dependencies = st.text_input("Dependencies")
         
         add_task_button = st.form_submit_button("Add Task")
         
         if add_task_button:
             # Validate form inputs
-            if not task_name or not task_resource or not task_start or not task_finish:
+            if not task_name or not task_start or not task_finish:
                 st.error("Please fill in all fields.")
             elif task_finish < task_start:
                 st.error("Finish date cannot be earlier than start date.")
@@ -63,7 +63,7 @@ def display_gantt_chart():
                         'Task': [task_name],
                         'Start': [task_start],
                         'Finish': [task_finish],
-                        'Resource': [task_resource]
+                        'Dependencies': [task_dependencies]
                     })
                     df = pd.concat([df, new_task], ignore_index=True)
                     
@@ -103,7 +103,7 @@ def display_gantt_chart():
             x_start="Start",
             x_end="Finish",
             y="Task",
-            color="Resource",
+            color="Dependencies",
             title="Project Timeline"
         )
 

@@ -48,7 +48,6 @@ def display_project_charter():
     **Role 5**: Conner King - Researcher (king4cr@mail.uc.edu)  
     **Role 6**: Noah Ashcraft - Researcher (ashcrant@mail.uc.edu)  
     **Role 7**: Sam Anderson - Researcher (ander4sl@mail.uc.edu)  
-    **Role 8**: Trey Burling - Designer (burlints@mail.uc.edu)
     """)
     
     # Milestones Section
