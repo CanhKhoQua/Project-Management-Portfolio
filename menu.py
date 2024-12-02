@@ -88,4 +88,5 @@ elif st.session_state["selected_page"] == "Cost Estimates":
 elif st.session_state["selected_page"] == "Status and Progress Reports Templates":
     pass
 elif st.session_state["selected_page"] == "Risk Management Plan":
-    pass
+    run_script("templates/costrisk.py")
+
