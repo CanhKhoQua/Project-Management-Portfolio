@@ -97,6 +97,9 @@ def display_gantt_chart():
     if df.empty:
         st.write("No tasks to display.")
     else:
+        # Calculate dynamic height for better display
+        chart_height = 400 + len(df) * 20
+
         # Plot the Gantt chart with proper datetime format
         fig = px.timeline(
             df,
@@ -107,17 +110,20 @@ def display_gantt_chart():
             title="Project Timeline"
         )
 
-        # Ensure proper date formatting on the x-axis
+        # Ensure proper layout
         fig.update_layout(
             xaxis_title="Timeline",
             yaxis_title="Tasks",
             hovermode="x",
             dragmode="pan",
+            height=chart_height,
+            autosize=True,
+            margin=dict(l=20, r=20, t=30, b=20),  # Reduce margins
             xaxis=dict(tickformat="%Y-%m-%d")  # Format the X axis as Date
         )
 
-        # Display the chart
-        st.plotly_chart(fig)
+        # Enable horizontal scroll if needed
+        st.plotly_chart(fig, use_container_width=True)
 
 # Main entry point
 if __name__ == "__main__":
