@@ -1,2 +1,6 @@
-Task,Start,Finish,Resource,Dependencies
-Project Planning,2024-10-01,2024-11-05,,
+Task,Start,Finish,Dependencies
+Project Planning,2024-10-01,2024-10-05,
+Design and Development,2024-10-06,2024-10-20,Project Planning
+Documentation and Reporting,2024-10-21,2024-10-25,Design and Development 
+Team Collaboration and Communication,2024-10-01,2024-12-03,Project Planning
+Project Review and Presentation,2024-12-04,2024-12-08,"Documentation and Reporting, Team Collaboration and Communication"
