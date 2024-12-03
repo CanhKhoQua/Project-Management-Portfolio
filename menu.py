@@ -84,7 +84,7 @@ elif st.session_state["selected_page"] == "Critical Path Analysis":
 elif st.session_state["selected_page"] == "Cost Estimates":
     run_script("templates/costestimates.py")
 elif st.session_state["selected_page"] == "Status and Progress Reports Templates":
-    run_script("templates/reporttemplates.py")
+    run_script("templates/templates.py")
 elif st.session_state["selected_page"] == "Risk Management Plan":
     run_script("templates/costrisk.py")
 
