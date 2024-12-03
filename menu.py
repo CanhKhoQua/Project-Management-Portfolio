@@ -49,9 +49,9 @@ if "selected_page" not in st.session_state:
 with st.sidebar:
     selected = option_menu(
         menu_title="Menu",
-        options=["Home", "Project Charter", "Work Breakdown Structure", "Gantt Chart", "Statement of Work", "Mindmap", "Critical Path Analysis", "Cost Estimates", "Status and Progress Reports Templates", "Risk Management Plan"],
-        icons=["house", "file-earmark-text", "list-ul", "bar-chart-steps", "person-workspace", "diagram-2", "diagram-3", "cash-coin", "file-bar-graph", "shield-exclamation"],
-        default_index=["Home", "Project Charter", "Work Breakdown Structure", "Gantt Chart", "Statement of Work", "Mindmap", "Critical Path Analysis", "Cost Estimates", "Status and Progress Reports Templates", "Risk Management Plan"].index(st.session_state["selected_page"]),
+        options=["Home", "Project Charter", "Work Breakdown Structure", "Gantt Chart", "Statement of Work", "Critical Path Analysis", "Cost Estimates", "Status and Progress Reports Templates", "Risk Management Plan"],
+        icons=["house", "file-earmark-text", "list-ul", "bar-chart-steps", "person-workspace", "diagram-3", "cash-coin", "file-bar-graph", "shield-exclamation"],
+        default_index=["Home", "Project Charter", "Work Breakdown Structure", "Gantt Chart", "Statement of Work", "Critical Path Analysis", "Cost Estimates", "Status and Progress Reports Templates", "Risk Management Plan"].index(st.session_state["selected_page"]),
         key="selected"
     )
 
@@ -79,8 +79,6 @@ elif st.session_state["selected_page"] == "Gantt Chart":
     run_script("templates/gantt_chart.py")
 elif st.session_state["selected_page"] == "Statement of Work":
     run_script("templates/sow.py")
-elif st.session_state["selected_page"] == "Mindmap":
-    run_script("templates/mindmap.py")
 elif st.session_state["selected_page"] == "Critical Path Analysis":
     run_script("templates/cpa.py")
 elif st.session_state["selected_page"] == "Cost Estimates":

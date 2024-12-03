@@ -72,7 +72,7 @@ def display_cost_risk_report():
 
     st.subheader("Conclusion and Recommendations")
     st.write("""
-    The main risks around this project are centered on the need to retake the course or failing if we don’t achieve a satisfactory grade. 
+    The main risks around this project are centered on the need to retake the course or failing if we don't achieve a satisfactory grade. 
     A solid approach, ensuring a good timeline, and maintaining effective communication among team members can help mitigate the risk. 
     Contingency plans will be essential for addressing any potential hiccups.
     """)
