@@ -93,6 +93,10 @@ def display_gantt_chart():
     # Filter out rows with invalid dates
     df = df.dropna(subset=['Start', 'Finish'])
 
+    # Calculate durations (in days) for each task
+    if not df.empty:
+        df['Duration (days)'] = (pd.to_datetime(df['Finish']) - pd.to_datetime(df['Start'])).dt.days + 1
+
     # Check if data is valid for display
     if df.empty:
         st.write("No tasks to display.")
@@ -107,7 +111,8 @@ def display_gantt_chart():
             x_end="Finish",
             y="Task",
             color="Dependencies",
-            title="Project Timeline"
+            title="Project Timeline",
+            hover_data={"Duration (days)": True}  # Include duration in hover tooltips
         )
 
         # Ensure proper layout
@@ -124,6 +129,13 @@ def display_gantt_chart():
 
         # Enable horizontal scroll if needed
         st.plotly_chart(fig, use_container_width=True)
+
+        # Add a note about fullscreen mode
+        st.info("Tip: Click the fullscreen icon on the top right of the chart for a better view.")
+
+        # Display task details in a table
+        st.write("### Task Details")
+        st.dataframe(df)
 
 # Main entry point
 if __name__ == "__main__":
