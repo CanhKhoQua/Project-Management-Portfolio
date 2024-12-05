@@ -16,7 +16,7 @@ def display_cost_risk_report():
     st.subheader("Project Overview")
     st.write("**Description:** Develop a personal portfolio to showcase skills learned in and outside of class.")
     st.write("**Budget:** Indirect costs such as tuition, software subscriptions, and time.")
-    st.write("**Timeline:** 10/1/2024 – 12/13/2024.")
+    st.write("**Timeline:** 10/1/2024 - 12/13/2024.")
 
     st.subheader("Identified Cost Risks")
     risks = [
