@@ -31,7 +31,7 @@ def display_cpa():
     - **Path 2:** A-B2-C2-D-E-F-G-H-J (Length = 21 days)
     - **Path 3:** A-B3-C3-D-E-F-G-H-J (Length = 19 days)
 
-    The **critical path** is **Path 1**, which is 22 days in length. This represents the timeline for developing with Streamlit, as opposed to HTML or Flask, to build the portfolio.
+    The **critical path** is **Path 1**, which is 22 days in length. This represents the timeline for developing with Streamlit, as opposed to HTML or Flask, to build the portfolio. However, the shortest amount of time to complete the project would be 19 days, which is represented by Path 3.
     """)
 
 if __name__ == "__main__":
